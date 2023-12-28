@@ -5,6 +5,9 @@ export default {
 		fontFamily: {
 			sans: ['Space Grotesk', 'Roboto'],
 		},
+		fontSize: {
+			'3xl': '2rem',
+		},
 		extend: {
 			colors: {
 				primary: '#81D8DE',

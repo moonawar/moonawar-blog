@@ -3,7 +3,7 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="font-sans">
+<html lang="en" class="bg-secondary text-white font-sans">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@ const { title } = Astro.props;
         <meta name="generator" content={Astro.generator} />
         <title>{ title }</title>
     </head>
-    <body>
+    <body >
         <slot/>
     </body>
 </html>
