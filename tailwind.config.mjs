@@ -7,6 +7,7 @@ export default {
 		},
 		fontSize: {
 			'3xl': '2rem',
+			'emoji': '8rem'
 		},
 		extend: {
 			colors: {
