@@ -5,11 +5,11 @@ export default {
 		fontFamily: {
 			sans: ['Space Grotesk', 'Roboto'],
 		},
-		fontSize: {
-			'3xl': '2rem',
-			'emoji': '8rem'
-		},
 		extend: {
+			fontSize: {
+				'3xl': '2rem',
+				'emoji': '8rem'
+			},
 			colors: {
 				primary: '#81D8DE',
 				secondary: '#060928',
