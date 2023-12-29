@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPathsOptions } from 'astro';
+
+import Container from '../../components/Container.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPost from '../../components/BlogPost.astro';
+
+export async function getStaticPaths({ paginate } : GetStaticPathsOptions) {
+  const posts = await getCollection('posts');
+  return paginate(posts, { pageSize: 2 });
+}
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+// All paginated data is passed on the "page" prop
+const { page } = Astro.props;
+---
+
+
+<BaseLayout title="Addin Munawwar's Space">
+	<main class="flex justify-center grow">
+		<Container>		
+			<div class="relative">
+				<h1 class="text-center">The blog</h1>
+				<!-- search icon -->
+			</div>
+			<!-- filter options -->
+			<h2>Featured</h2>
+			<div class="flex flex-col gap-6">
+				{
+					page.data.map((post) => (
+						<BlogPost
+							title={post.data.title}
+							targetUrl={`/posts/${post.slug}`}
+							imgPath={post.data.image.path}
+							pubDate={post.data.pubDate}
+							tags={post.data.tags}
+						/>
+					))
+				}
+				
+			</div>
+		</Container>
+	</main>
+</BaseLayout>

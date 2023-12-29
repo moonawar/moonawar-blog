@@ -4,32 +4,5 @@ import Container from "../../components/Container.astro";
 import { getCollection } from "astro:content";
 import BlogPost from "../../components/BlogPost.astro";
 
-const posts = await getCollection("posts");
+return Astro.redirect("/posts/1");
 ---
-
-<BaseLayout title="Addin Munawwar's Space">
-	<main class="flex justify-center grow">
-		<Container>		
-			<div class="relative">
-				<h1 class="text-center">The blog</h1>
-				<!-- search icon -->
-			</div>
-			<!-- filter options -->
-			<h2>Featured</h2>
-			<div class="flex flex-col gap-6">
-				{
-					posts.map((post) => (
-						<BlogPost
-							title={post.data.title}
-							targetUrl={`/posts/${post.slug}`}
-							imgPath={post.data.image.path}
-							pubDate={post.data.pubDate}
-							tags={post.data.tags}
-						/>
-					))
-				}
-				
-			</div>
-		</Container>
-	</main>
-</BaseLayout>
