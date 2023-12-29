@@ -1,15 +1,16 @@
 ---
 import BlogImage from "../components/BlogImage.astro";
+import Container from "../components/Container.astro";
 import Icon from "../components/Icon.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Addin Munawwar's Space">
 	<main class="flex justify-center">
-		<div class="w-4/5 min-h-screen py-6 flex flex-col gap-5">
-			<h1 class="text-3xl font-bold text-center">A Resume</h1>
+        <Container>
+            <h1 class="text-3xl font-bold text-center">A Resume</h1>
             <BlogImage src="/addin.png" alt="Addin Munawwar" />
-			<h2 class="text-2xl font-bold">ADDIN MUNAWWAR YUSUF</h2>
+            <h2 class="text-2xl font-bold">ADDIN MUNAWWAR YUSUF</h2>
             <h3 class="text-xl" >Game Developer Generalist | Computer Graphics Enthusiast | Web Developer</h3>
             <contact class="flex flex-col text-primary underline underline-offset-2 font-bold gap-1">
                 <a href="mailto:moonawardev@gmail.com">moonawardev@gmail.com</a>
@@ -21,8 +22,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 <h1 class="text-3xl font-bold">Career Goal</h1>
                 <Icon />
             </div>
-			<p>
-				I perceive games as the best form of human piece of art 🎨. 
+            <p>
+                I perceive games as the best form of human piece of art 🎨. 
                 It involves the most known art form, like animation, music, narrative, and many more!
                 Games are just like movies, but with interactivity. It can convey ideas, share information, 
                 and simply, express human feelings. That's what makes me intent to pursue game development
@@ -31,7 +32,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 I really love to learn and explore new things in the game development field, not limited to 
                 programming, but also its artistic aspect (audiovisual) and the underlying system behind it 
                 (the engine, architecture, tools, etc).
-			</p>
-		</div>
+            </p>
+        </Container>
 	</main>
 </BaseLayout>

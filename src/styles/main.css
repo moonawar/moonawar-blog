@@ -10,4 +10,8 @@
     h2 {
         @apply text-2xl font-bold;
     }
+
+    a {
+        @apply text-primary underline underline-offset-2;
+    }
 }
