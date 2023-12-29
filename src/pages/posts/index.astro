@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/Container.astro";
+import { getCollection } from "astro:content";
+import BlogPost from "../../components/BlogPost.astro";
+
+const posts = await getCollection("posts");
 ---
 
 <BaseLayout title="Addin Munawwar's Space">
@@ -12,6 +16,9 @@ import Container from "../../components/Container.astro";
 			</div>
 			<!-- filter options -->
 			<h2 class="text-2xl font-bold">Featured</h2>
+			<div class="flex flex-col">
+				
+			</div>
 		</Container>
 	</main>
 </BaseLayout>
