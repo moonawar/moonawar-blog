@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPathsOptions } from 'astro';
+import type { GetStaticPathsOptions } from 'astro';
 
 import Container from '../../components/Container.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -11,10 +11,6 @@ export async function getStaticPaths({ paginate } : GetStaticPathsOptions) {
   return paginate(posts, { pageSize: 2 });
 }
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
-
-// All paginated data is passed on the "page" prop
 const { page } = Astro.props;
 ---
 
@@ -40,7 +36,6 @@ const { page } = Astro.props;
 						/>
 					))
 				}
-				
 			</div>
 		</Container>
 	</main>
