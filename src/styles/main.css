@@ -11,6 +11,10 @@
         @apply text-2xl font-bold;
     }
 
+    h3 {
+        @apply text-xl
+    }
+
     a {
         @apply text-primary underline underline-offset-2;
     }
