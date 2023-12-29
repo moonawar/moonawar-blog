@@ -6,9 +6,11 @@ import Container from '../../components/Container.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
 
+import { POST_PER_PAGE } from '../../consts';
+
 export async function getStaticPaths({ paginate } : GetStaticPathsOptions) {
   const posts = await getCollection('posts');
-  return paginate(posts, { pageSize: 2 });
+  return paginate(posts, { pageSize: POST_PER_PAGE });
 }
 
 const { page } = Astro.props;
