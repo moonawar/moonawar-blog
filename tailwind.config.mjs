@@ -8,7 +8,6 @@ export default {
 		extend: {
 			fontSize: {
 				'3xl': '2rem',
-				'emoji': '8rem'
 			},
 			colors: {
 				primary: '#81D8DE',

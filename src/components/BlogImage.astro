@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
+import { POST_IMG_ASPECT_RATIO } from '../consts.ts';
+
 interface Props {
     imgPath: string;
     alt: string;
@@ -12,4 +14,4 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{j
 if (!images[imgPath]) throw new Error(`"${imgPath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`)
 ---
 
-<Image src={images[imgPath]()} alt={alt} class="aspect-[3/2] object-cover">
+<Image src={images[imgPath]()} alt={alt} class={`aspect-[${POST_IMG_ASPECT_RATIO}] object-cover`}>
