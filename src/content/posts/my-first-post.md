@@ -2,11 +2,11 @@
 title: My first blog post!
 pubDate: 2023-12-29
 image: {
-    url: "addin.png",
-    alt: "Picture of Addin"
+    path: "/src/assets/blog/my-first-post.png",
+    alt: "GRIS gameplay"
 }
 tags:
-    - Projects
+    - Project
     - Web Dev
 ---
 

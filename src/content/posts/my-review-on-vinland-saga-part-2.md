@@ -1,13 +1,13 @@
 ---
-title: Test 2
-pubDate: 2023-12-29
+title: My Review on Vinland Saga (Part 2)
+pubDate: 2024-01-19
 image: {
-    url: "addin.png",
-    alt: "Picture of Addin"
+    path: "/src/assets/blog/vinland-2.jpg",
+    alt: "Thorfinn"
 }
 tags:
-    - Editorial
-    - Environment
+    - Anime
+    - Review
 ---
 
 ## Background
