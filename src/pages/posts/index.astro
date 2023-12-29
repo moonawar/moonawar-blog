@@ -5,6 +5,9 @@ import { getCollection } from "astro:content";
 import BlogPost from "../../components/BlogPost.astro";
 
 const posts = await getCollection("posts");
+console.log(posts)
+const postTest = posts[0];
+console.log(typeof(postTest))
 ---
 
 <BaseLayout title="Addin Munawwar's Space">
@@ -17,7 +20,13 @@ const posts = await getCollection("posts");
 			<!-- filter options -->
 			<h2 class="text-2xl font-bold">Featured</h2>
 			<div class="flex flex-col">
-				
+				<BlogPost
+					title={postTest.data.title}
+					targetUrl={`/posts/${postTest.slug}`}
+					imgPath="/src/assets/addin.png"
+					pubDate={postTest.data.pubDate}
+					tags={postTest.data.tags}
+				/>
 			</div>
 		</Container>
 	</main>

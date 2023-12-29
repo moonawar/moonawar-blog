@@ -1,10 +1,27 @@
 ---
+import BlogImage from './BlogImage.astro';
 interface Props {
-    url: string;
-    image: string;
+    title: string;
+    targetUrl: string;
+    imgPath: string;
+    pubDate: Date;
+    tags: Array<string>;
 }
 
-const { url, image } = Astro.props;
+const { title, targetUrl, imgPath, pubDate, tags } = Astro.props;
 ---
 
+<div class="relative">
+    <div class="absolute w-full h-full bg-black opacity-75"></div>
+    <BlogImage imgPath="/src/assets/blog/my-first-post.png" alt={title}/> 
+    <div class="absolute bottom-0 p-6 z-50">
+        <h3 class="font-bold"><a href={targetUrl} class="text-white no-underline">The beauty of GRIS camera system</a></h3>
+        <time class="text-xs">{pubDate}</time>
+        {
+            tags.map((tag) => (
+                <span class="text-xs">Editorial, </span>
+            ))
+        }
+    </div>
 
+</div>
