@@ -1,0 +1,18 @@
+---
+import PrimaryButton from './NavButton.astro';
+interface Props {
+    nextUrl: string | undefined;
+    prevUrl: string | undefined;
+}
+
+const { nextUrl, prevUrl } = Astro.props;
+---
+
+<div class="flex justify-between">
+    {
+        prevUrl ? <PrimaryButton href={prevUrl}>← Prev</PrimaryButton> : <p></p>
+    }
+    {
+        nextUrl ? <PrimaryButton href={nextUrl}>Next →</PrimaryButton> : <p></p>
+    }
+</div>

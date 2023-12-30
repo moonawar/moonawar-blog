@@ -5,6 +5,7 @@ import type { GetStaticPathsOptions } from 'astro';
 import Container from '../../components/Container.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
+import PaginationNav from '../../components/PaginationNav.astro';
 
 import { POST_PER_PAGE } from '../../consts';
 
@@ -26,6 +27,7 @@ const { page } = Astro.props;
 			</div>
 			<!-- filter options -->
 			<h2>All Posts</h2>
+			<PaginationNav nextUrl={page.url.next} prevUrl={page.url.prev}/>
 			<div class="flex flex-col gap-6">
 				{
 					page.data.map((post) => (
@@ -39,6 +41,7 @@ const { page } = Astro.props;
 					))
 				}
 			</div>
+			<PaginationNav nextUrl={page.url.next} prevUrl={page.url.prev}/>
 		</Container>
 	</main>
 </BaseLayout>
