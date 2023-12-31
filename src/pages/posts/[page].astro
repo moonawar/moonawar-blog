@@ -17,15 +17,12 @@ export async function getStaticPaths({ paginate } : GetStaticPathsOptions) {
 const { page } = Astro.props;
 ---
 
-
 <BaseLayout title="Addin Munawwar's Space">
 	<main class="flex justify-center grow">
 		<Container>		
 			<div class="relative">
-				<h1 class="text-center">The blog</h1>
-				<!-- search icon -->
+				<h1 class="text-center"><a href="/posts" class="text-white no-underline">The blog</a></h1>
 			</div>
-			<!-- filter options -->
 			<h2>All Posts</h2>
 			<PaginationNav nextUrl={page.url.next} prevUrl={page.url.prev}/>
 			<div class="flex flex-col gap-6">

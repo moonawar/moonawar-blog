@@ -1,6 +1,8 @@
 ---
 import BlogImage from './BlogImage.astro';
 import FormattedDate from './FormattedDate.astro';
+import { getURLByPostTag } from '../utils/mainUtils';
+
 interface Props {
     title: string;
     targetUrl: string;
@@ -24,11 +26,15 @@ const { title, targetUrl, imgPath, pubDate, tags } = Astro.props;
         <FormattedDate date={pubDate} />
         <div>
             {
-                tags.map((tag, idx) => (
-                    <span>
-                        <a href="/" class="text-xs text-white">{tag}</a>{idx != (tags.length - 1) ? ', ' : ''}
-                    </span>
-                ))
+                tags.map((tag, idx) => {
+                    const href = getURLByPostTag(tag);
+                    return (
+                        <span>
+                            <a href={href} class="text-xs text-white">{tag}</a>{idx != (tags.length - 1) ? ', ' : ''}
+                        </span>
+                    )
+                }
+                )
             }
         </div>
     </div>

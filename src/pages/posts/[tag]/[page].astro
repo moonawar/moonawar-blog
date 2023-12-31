@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPathsOptions } from 'astro';
+import { toTagLink } from '../../../utils/mainUtils';
+
+import Container from '../../../components/Container.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogPost from '../../../components/BlogPost.astro';
+import PaginationNav from '../../../components/PaginationNav.astro';
+
+import { POST_PER_PAGE } from '../../../consts';
+
+export async function getStaticPaths({ paginate } : GetStaticPathsOptions) {
+    const allPosts = await getCollection('posts');
+    const allTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+
+    return allTags.flatMap((tag) => {
+        const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
+        const titleTag = tag
+        tag = toTagLink(tag);
+        return paginate(filteredPosts, {
+            params: { tag },
+            props: { titleTag },
+            pageSize: POST_PER_PAGE
+        });
+    })
+};
+
+const { page, titleTag } = Astro.props;
+const { tag } = Astro.params;
+---
+
+<BaseLayout title={`Posts with tags ${tag} | Addin Munawwar's Space`}>
+	<main class="flex justify-center grow">
+		<Container>		
+			<div class="relative">
+				<h1 class="text-center"><a href="/posts" class="text-white no-underline">The blog</a></h1>
+			</div>
+			<h2>Posts with tag "{titleTag}"</h2>
+			<PaginationNav nextUrl={page.url.next} prevUrl={page.url.prev}/>
+			<div class="flex flex-col gap-6">
+				{
+					page.data.map((post) => (
+						<BlogPost
+							title={post.data.title}
+							targetUrl={`/posts/${post.slug}`}
+							imgPath={post.data.image.path}
+							pubDate={post.data.pubDate}
+							tags={post.data.tags}
+						/>
+					))
+				}
+			</div>
+			<PaginationNav nextUrl={page.url.next} prevUrl={page.url.prev}/>
+		</Container>
+	</main>
+</BaseLayout>
+
+{
+    page.data.map((post) => {
+        return <h1>{post}</h1>
+    })
+}
