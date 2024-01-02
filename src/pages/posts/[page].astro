@@ -5,6 +5,7 @@ import type { GetStaticPathsOptions } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
 import PaginationNav from '../../components/PaginationNav.astro';
+import SearchIcon from '../../components/SearchIcon.astro';
 
 import { POST_PER_PAGE } from '../../consts';
 
@@ -19,6 +20,7 @@ const { page } = Astro.props;
 <BaseLayout title="Addin Munawwar's Space">
 	<div class="relative">
 		<h1 class="text-center"><a href="/posts" class="text-white no-underline">The blog</a></h1>
+		<SearchIcon className='absolute right-0 bottom-1/2 translate-y-1/2'/>
 	</div>
 	<h2>All Posts</h2>
 	<PaginationNav nextUrl={page.url.next} prevUrl={page.url.prev}/>

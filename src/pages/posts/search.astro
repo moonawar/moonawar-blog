@@ -1,0 +1,130 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+    <h1 class="text-center">Search</h1>
+    <input 
+        type="search" autocomplete="off" placeholder="Search..."
+        class="text-secondary_dark hover:outline-0 px-2 py-0.5 
+        rounded-sm focus:outline-none focus:border border-primary" 
+        id="search"
+        required
+        min="2"
+        max="32"
+        >
+    <p id="searchReadout"></p>
+    <div class="flex flex-col gap-7" id="searchResults"></div>
+</BaseLayout>
+
+<script>
+    import DOMPurify from 'dompurify';
+    import Fuse from 'fuse.js';
+    import type { IFuseOptions, FuseResult, FuseSearchOptions } from 'fuse.js';
+
+    const indexPath = '/search-index.json';
+
+    interface IndexEntry {
+        title: string;
+        slug: string;
+        tags: string[];
+        dateString: string;
+    }
+
+    let fuseInstance : Fuse<IndexEntry>;
+
+    // dom element
+    const search = document.getElementById('search') as HTMLInputElement;
+    const searchReadout = document.getElementById('searchReadout');
+    const searchResults = document.getElementById('searchResults');
+
+    // functions
+    const updateSearchReadout = (input : string) => {
+        if (searchReadout) searchReadout.innerHTML = 
+            input ? `Search result for "${input}"` : "";
+    }   
+
+    const sanitizeUserInput = (input : string) => {
+        return DOMPurify.sanitize(input, {ALLOWED_TAGS: []});
+    }
+
+    const initFuse = async () : Promise<Fuse<IndexEntry>> => {
+        const res = await fetch(indexPath);
+        const index = await res.json();
+
+        const fuseOptions : IFuseOptions<IndexEntry> = {
+            includeMatches: true,
+            minMatchCharLength: 2,
+            threshold: 0.2,
+            keys: [
+                'title', 'tags'
+            ]
+        }
+
+        return new Fuse(index, fuseOptions);
+
+    }
+    const getSearchResults = (input : string) : FuseResult<IndexEntry>[] => {
+        const searchOption : FuseSearchOptions= { limit: 5 }
+        return fuseInstance.search(input, searchOption);
+    }
+
+    const toTagLink = (tag : string) : string => {
+        return tag.toLowerCase().replace(' ', '-');
+    }
+
+    const toPostHref = (slug : string) : string => {
+        return `/posts/${slug}`;
+    }
+
+    const renderResults = (entries : FuseResult<IndexEntry>[]) => {
+        if (searchResults) {
+            const render = entries.map((entry) => {
+                const tagsRender = entry.item.tags.map((tag) => {
+                    const href = toPostHref(toTagLink(tag));
+                    return `
+                        <span>
+                            <a href=${href} class="text-white text-sm">${tag}</a>
+                        </span>
+                    `
+                })
+
+                const postHref = `/posts/${entry.item.slug}`
+                
+                return  `
+                        <div class="flex flex-col gap-1">
+                            <h3 class="font-bold"><a href=${postHref} class="text-white no-underline">${entry.item.title}</a></h3>
+                            <time class="text-sm">${entry.item.dateString}</time>
+                            <div>${tagsRender}</div>
+                        </div>
+                        ` 
+            }).join('');
+
+            console.log(render);
+            searchResults.innerHTML = render;
+        }
+    }
+
+    // event listeners
+    // check for query params
+    window.addEventListener('DOMContentLoaded', async () => {
+        fuseInstance = await initFuse();
+        const query = new URLSearchParams(window.location.search).get('q');
+        if (query) {
+            
+            const input = sanitizeUserInput(query);
+            search.value = input;
+            updateSearchReadout(input);
+            const res = getSearchResults(input);
+            renderResults(res);
+        }
+    })
+
+    // listen to input
+    search?.addEventListener('input', () => {
+        const input = sanitizeUserInput(search.value);
+        const res = getSearchResults(input);
+        renderResults(res);
+        updateSearchReadout(input);
+    });
+</script>
