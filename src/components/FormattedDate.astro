@@ -1,9 +1,10 @@
 ---
 interface Props {
     date: Date
+    className?: string
 }
 
-const { date } = Astro.props;
+const { date, className } = Astro.props;
 const formattedDate = date.toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
@@ -12,4 +13,4 @@ const formattedDate = date.toLocaleDateString('en-US', {
 });
 ---
 
-<time class="text-xs">{ formattedDate }</time>
+<time class={className ? className : "text-xs"}>{ formattedDate }</time>

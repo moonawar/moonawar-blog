@@ -15,6 +15,5 @@ export async function getStaticPaths() {
 };
 
 const { tag } = Astro.params;
-const redirectUrl =  getURLByPostTag(tag);
-return Astro.redirect(redirectUrl);
+return Astro.redirect(getURLByPostTag(tag));
 ---

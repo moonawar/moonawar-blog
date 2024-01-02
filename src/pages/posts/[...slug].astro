@@ -2,6 +2,9 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/Container.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+import { getURLByPostTag } from "../../utils/mainUtils";
+import BlogImage from "../../components/BlogImage.astro";
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts");
@@ -15,6 +18,24 @@ const { Content } = await post.render();
 <BaseLayout>
     <main class="flex justify-center">
         <Container>
+            <div class="flex flex-col gap-1">
+                <h1>{post.data.title}</h1>
+                <FormattedDate date={post.data.pubDate} className="text-md"/>
+                <div>
+                    {
+                        post.data.tags.map((tag, idx) => {
+                            const href = getURLByPostTag(tag);
+                            return (
+                                <span>
+                                    <a href={href} class="text-white">{tag}</a>{idx != (post.data.tags.length - 1) ? ', ' : ''}
+                                </span>
+                            )
+                        }
+                        )
+                    }
+                </div>
+            </div>
+            <BlogImage imgPath={post.data.image.path} alt={post.data.image.alt} />
             <Content />
         </Container>
     </main>
