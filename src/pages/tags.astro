@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import { toTagLink } from "../utils/mainUtils";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const allPosts = await getCollection('posts');
+const allTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+---
+
+<BaseLayout>
+    <h1>All Tags</h1>
+    <p>All tags used in the posts</p>
+    <div class="flex gap-5 flex-wrap mt-4">
+        {
+            allTags.map((tag) => {
+                const formattedTag = toTagLink(tag);
+                return (
+                    <a href={`/posts/${formattedTag}`} class="text-lg text-white">{tag}</a>
+                );
+            })
+        }    
+    </div> 
+</BaseLayout>
