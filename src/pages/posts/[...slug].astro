@@ -16,7 +16,7 @@ const { Content } = await post.render();
 ---
 
 <BaseLayout>
-    <div class="flex flex-col gap-1">
+    <div class="flex flex-col gap-1" data-pagefind-body>
         <h1>{post.data.title}</h1>
         <FormattedDate date={post.data.pubDate} className="text-md"/>
         <div>

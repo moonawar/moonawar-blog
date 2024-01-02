@@ -18,6 +18,10 @@
     a {
         @apply text-primary underline underline-offset-2;
     }
+
+    p {
+        @apply text-sm
+    }
 }
 
 @layer utilities {
