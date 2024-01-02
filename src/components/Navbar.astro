@@ -1,16 +1,18 @@
 ---
 import { Image } from 'astro:assets';
-
 import nameLogo from '../assets/nameLogo.png'
 ---
 
-<nav class="h-20 flex justify-center  bg-secondary_dark text-white">
-    <div class="w-4/5 flex items-center justify-between">
+<nav class="py-5 flex justify-center  bg-secondary_dark text-white">
+    <div class="w-4/5 flex justify-between">
         <a href="/"><Image src={nameLogo} alt="Name Logo"/></a>
-        <svg width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="33.6" height="6.4" fill="white"/>
-            <rect y="12.3999" width="33.6" height="6.4" fill="#81D8DE"/>
-            <rect x="15.2" y="24.8" width="18.4" height="6.4" fill="white"/>
-        </svg>
+        <svg 
+            width="34" height="27" viewBox="0 0 34 27" fill="none" 
+            xmlns="http://www.w3.org/2000/svg" class="mt-2"
+        >
+                <rect width="33.6" height="5" fill="white"/>
+                <rect y="11" width="33.6" height="5" fill="#81D8DE"/>
+                <rect x="15.2" y="22" width="18.4" height="5" fill="white"/>
+        </svg>        
     </div>
 </nav>
