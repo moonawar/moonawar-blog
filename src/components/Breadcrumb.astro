@@ -10,7 +10,7 @@ const links = extractPathNameToLinks(pathName);
 const isPageNum = !isNaN(Number(links[links.length-1].title));
 if (isPageNum) links.pop();
 ---
-<ol class="flex gap-1 flex-wrap">
+<ol class="flex gap-1 flex-nowrap whitespace-nowrap overflow-auto no-scrollbar">
     {
         links.map((link, idx) => (
             <li>
