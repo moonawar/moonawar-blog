@@ -28,11 +28,11 @@ export async function getStaticPaths({ paginate } : GetStaticPathsOptions) {
 
 const { page, titleTag } = Astro.props;
 const { tag } = Astro.params;
+
+console.log(Astro.url);
 ---
 
-<BaseLayout title={`Posts with tags ${tag} | Addin Munawwar's Space`}>
-	<main class="flex justify-center grow">
-		<Container>		
+<BaseLayout title={`Posts with tags ${tag} | Addin Munawwar's Space`}>	
 			<div class="relative">
 				<h1 class="text-center"><a href="/posts" class="text-white no-underline">The blog</a></h1>
 			</div>

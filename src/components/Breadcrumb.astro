@@ -1,0 +1,26 @@
+---
+import { extractPathNameToLinks } from '../utils/mainUtils';
+interface Props {
+    pathName: string
+}
+
+const { pathName } = Astro.props;
+const links = extractPathNameToLinks(pathName);
+
+const isPageNum = !isNaN(Number(links[links.length-1].title));
+if (isPageNum) links.pop();
+---
+<ol class="flex gap-1">
+    {
+        links.map((link, idx) => (
+            <li>
+                {(idx != links.length - 1) 
+                    ? <a href={link.href} class="text-white">{link.title}</a>
+                    : link.title
+                }
+                
+                {(idx != links.length - 1) ? '►' : ''}
+            </li>
+        ))
+    } 
+</ol>
