@@ -19,8 +19,8 @@ const pathName = Astro.url.pathname;
         <title>{ title }</title>
     </head>
     <body class="min-h-screen flex flex-col">
-        <header>
-            <Navbar/>
+        <header class="relative">
+            <Navbar client:load/>
         </header>
         <main class="flex justify-center grow">
             <Container>	
