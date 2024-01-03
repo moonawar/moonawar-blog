@@ -11,5 +11,5 @@ const { imgPath, alt } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{jpeg,jpg,png,gif}')
 if (!images[imgPath]) throw new Error(`"${imgPath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`)
 ---
-
-<Image src={images[imgPath]()} alt={alt} class={`aspect-[3/2] object-cover`}>
+ 
+<Image src={images[imgPath]()} alt={alt} class='object-cover aspect-[3/2] min-w-full min-h-full'>
