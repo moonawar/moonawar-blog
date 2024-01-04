@@ -12,4 +12,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{j
 if (!images[imgPath]) throw new Error(`"${imgPath}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`)
 ---
  
-<Image src={images[imgPath]()} alt={alt} class='object-cover aspect-[3/2] min-w-full min-h-full'>
+<div>
+    <Image src={images[imgPath]()} alt={alt} class='object-cover aspect-[3/2] min-w-full min-h-full'>
+</div>

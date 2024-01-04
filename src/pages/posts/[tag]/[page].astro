@@ -27,8 +27,6 @@ export async function getStaticPaths({ paginate } : GetStaticPathsOptions) {
 
 const { page, titleTag } = Astro.props;
 const { tag } = Astro.params;
-
-console.log(Astro.url);
 ---
 
 <BaseLayout title={`Posts with tags ${tag} | Addin Munawwar's Space`}>	
